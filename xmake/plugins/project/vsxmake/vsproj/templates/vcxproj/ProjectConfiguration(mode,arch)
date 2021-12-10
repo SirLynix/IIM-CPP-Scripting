@@ -1,0 +1,4 @@
+    <ProjectConfiguration Include="#mode#|#vsarch#">
+      <Configuration>#mode#</Configuration>
+      <Platform>#vsarch#</Platform>
+    </ProjectConfiguration>

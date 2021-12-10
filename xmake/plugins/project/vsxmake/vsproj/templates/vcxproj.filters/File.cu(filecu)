@@ -1,0 +1,3 @@
+    <CudaCompile Include="$(XmakeProjectDir)\#path#">
+      <Filter>#dir#</Filter>
+    </CudaCompile>
