@@ -26,8 +26,23 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML Project");
 	window.setVerticalSyncEnabled(true);
 
+	sf::CircleShape circle(50.f);
+	circle.setOrigin(25.f, 25.f);
+
 	sol::state state;
 	state.open_libraries();
+
+	state["DrawCircle"] = [&](int x, int y)
+	{
+		circle.setPosition(x, y);
+		window.draw(circle);
+	};
+
+	state["IsKeyPressed"] = [&](const std::string& keyName)
+	{
+		if (keyName == "up")
+			return sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+	};
 
 	state["SetWindowTitle"] = [&](const std::string& title)
 	{

@@ -5,6 +5,6 @@ end
 
 local frameCount = 0
 function OnFrame(elapsedTime)
-    frameCount = frameCount + 1
-    SetWindowTitle("Frame #" .. frameCount)
+    DrawCircle(400, 300)
+    DrawCircle(800, 300)
 end
