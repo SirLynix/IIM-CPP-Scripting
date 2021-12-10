@@ -9,6 +9,9 @@ bool ReloadScript(sol::state& state)
 	try
 	{
 		state.safe_script_file("game.lua");
+
+		sol::protected_function initFunc = state["Init"];
+		initFunc();
 		return true;
 	}
 	catch (const std::exception& e)
@@ -25,6 +28,11 @@ int main()
 
 	sol::state state;
 	state.open_libraries();
+
+	state["SetWindowTitle"] = [&](const std::string& title)
+	{
+		window.setTitle(title);
+	};
 
 	ReloadScript(state);
 	
@@ -57,6 +65,9 @@ int main()
 		float elapsedTime = clock.restart().asSeconds();
 
 		window.clear();
+
+		sol::protected_function onFrameFunc = state["OnFrame"];
+		onFrameFunc(elapsedTime);
 
 		window.display();
 	}

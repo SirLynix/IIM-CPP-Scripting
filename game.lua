@@ -6,5 +6,5 @@ end
 local frameCount = 0
 function OnFrame(elapsedTime)
     frameCount = frameCount + 1
-    SetWindowTitle("Frame #" .. frameCount .. " - " .. elapsedTime)
+    SetWindowTitle("Frame #" .. frameCount)
 end
