@@ -32,6 +32,17 @@ int main()
 	sol::state state;
 	state.open_libraries();
 
+	state.new_usertype<sf::RenderWindow>("Window",
+		"new", sol::no_constructor,
+
+		"SetTitle", [](sf::RenderWindow& window, const std::string& title)
+		{
+			window.setTitle(title);
+		}
+	);
+
+	state["window"] = &window;
+
 	state["DrawCircle"] = [&](int x, int y)
 	{
 		circle.setPosition(x, y);
@@ -42,11 +53,14 @@ int main()
 	{
 		if (keyName == "up")
 			return sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
-	};
+		else if (keyName == "down")
+			return sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
+		else if (keyName == "left")
+			return sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+		else if (keyName == "right")
+			return sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
 
-	state["SetWindowTitle"] = [&](const std::string& title)
-	{
-		window.setTitle(title);
+		return false;
 	};
 
 	ReloadScript(state);
