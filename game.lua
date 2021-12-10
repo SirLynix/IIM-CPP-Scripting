@@ -4,7 +4,7 @@ function Init()
 end
 
 local frameCount = 0
-function OnFrame()
+function OnFrame(elapsedTime)
     frameCount = frameCount + 1
-    SetWindowTitle("Frame #" .. frameCount)
+    SetWindowTitle("Frame #" .. frameCount .. " - " .. elapsedTime)
 end
