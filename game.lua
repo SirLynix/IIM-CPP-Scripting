@@ -1,2 +1,1 @@
-print("Hello!")
-print(Window:GetSize().x
+printhelloworld("Coucou2")
